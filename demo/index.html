@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube to Social Repurposer</title>
+    <script src="https://cdn.counter.dev/script.js" data-id="yt-repurposer-demo" data-utcoffset="1"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9fafb;
+            padding: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .bullets {
+            list-style: none;
+        }
+        .bullets li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        .bullets li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        .bullets.whatnot li:before {
+            content: '✗';
+            color: #ef4444;
+        }
+        .demo-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .demo-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+        .demo-card h3 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+        .demo-card pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.875rem;
+            line-height: 1.4;
+            white-space: pre-wrap;
+        }
+        .input-area {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        .output {
+            margin-top: 1.5rem;
+            display: none;
+        }
+        .output.active {
+            display: block;
+        }
+        .output pre {
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+        }
+        .cta {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 12px;
+        }
+        .cta h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .cta a {
+            display: inline-block;
+            background: white;
+            color: #6366f1;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+        .cta a:hover {
+            transform: translateY(-2px);
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .status-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+        .status-box h3 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        .status-box ul {
+            padding-left: 1.5rem;
+        }
+        .mock-notice {
+            background: #e0f2fe;
+            border: 1px solid #38bdf8;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #0369a1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>YouTube to Social Repurposer</h1>
+        <p class="subtitle">Turn any YouTube video into LinkedIn and X posts in seconds. No login, no setup.</p>
+    </header>
+
+    <div class="section">
+        <h2>What It Does</h2>
+        <ul class="bullets">
+            <li>Paste a YouTube URL, get a LinkedIn post draft and 3 X posts</li>
+            <li>No login, no setup, just instant content</li>
+            <li>Tuned for B2B founders sharing expert insights</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>What It Does NOT Do</h2>
+        <ul class="bullets whatnot">
+            <li>No auto‑posting (you copy/paste manually)</li>
+            <li>No support for videos without transcripts</li>
+            <li>No scheduling or calendar integration</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Live Demo</h2>
+        <p>Try it now with a mock YouTube URL (no real API calls):</p>
+        
+        <div class="mock-notice">
+            <strong>Demo note:</strong> This validation prototype uses mock transcript data. No real YouTube API calls are made.
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="urlInput" value="https://www.youtube.com/watch?v=abc123" placeholder="Paste any YouTube URL">
+            <button onclick="generatePosts()">Generate Posts</button>
+        </div>
+        
+        <div id="output" class="output">
+            <div class="demo-sections">
+                <div class="demo-card">
+                    <h3>LinkedIn Post Draft</h3>
+                    <pre id="linkedinPost"></pre>
+                </div>
+                <div class="demo-card">
+                    <h3>X Posts (3)</h3>
+                    <pre id="xPosts"></pre>
+                </div>
+            </div>
+            <p style="margin-top:1rem; color:#6b7280;">Copy the drafts, paste into your social platforms, edit if needed, and post!</p>
+        </div>
+    </div>
+
+    <div class="cta">
+        <h2>Help Us Improve This Tool</h2>
+        <p>This is a validation prototype. Your feedback shapes what we build next.</p>
+        <a href="mailto:feedback@example.com?subject=YouTube Repurposer Feedback">Share Your Feedback →</a>
+        <p style="margin-top:1rem;font-size:0.9rem;opacity:0.9;">Or reply to our Reddit/Twitter posts with your thoughts.</p>
+    </div>
+
+    <div class="section status-box">
+        <h3>STATUS & RISKS</h3>
+        <p><strong>Current phase:</strong> Validation (collecting signals)</p>
+        <p><strong>Price point:</strong> $19 one‑time (Simple Utility variant)</p>
+        <p><strong>Biggest risk:</strong> YouTube transcript API blocked on cloud IPs – working on proxy solution.</p>
+        <p><strong>Next step:</strong> Collect feedback for 24h, then decide on build vs. pivot.</p>
+    </div>
+
+    <footer>
+        <p>This is a validation prototype. Not a real product yet. • No data stored • No subscriptions • Built by a solo founder</p>
+        <p>Demo URL: <span id="demoUrl">https://yourusername.github.io/yt-repurposer-demo/</span> • Last updated: May 27, 2026</p>
+    </footer>
+
+    <script>
+        const mockLinkedin = `🎥 Video Recap: Scaling B2B SaaS from 0 to 10k Users
+
+Just watched a valuable video for B2B founders.
+
+Key takeaways:
+In this video, I'll share three key insights that helped us scale from zero to 10,000 users. First, focus on solving a painful problem for a narrow audience. Second, build in public and share your journey to attract early adopters. Third, automate repetitive tasks early to free up time for strategic work.
+
+My reflection: implementing even one of these ideas can move the needle.
+
+What's your biggest takeaway?
+
+#B2B #SaaS #Founder #YouTubeRecap`;
+
+        const mockXPosts = `1. Just watched "Scaling B2B SaaS from 0 to 10k Users".
+
+Key insight: In this video, I'll share three key insights that helped us scale from zero to 10,000 users. First, focus on solving a painful problem for a narrow audience...
+
+#B2B #Founder
+
+2. Great video for founders looking to scale.
+
+Scaling B2B SaaS from 0 to 10k Users
+
+#Startup #Growth
+
+3. From video to actionable content in minutes.
+
+Automating my learning loop with this tool.
+
+#Productivity #AI`;
+
+        function generatePosts() {
+            document.getElementById('output').classList.add('active');
+            document.getElementById('linkedinPost').textContent = mockLinkedin;
+            document.getElementById('xPosts').textContent = mockXPosts;
+            
+            // Track CTA click
+            if (window.counter) {
+                window.counter('cta-click');
+            }
+            
+            // Scroll to output
+            document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update demo URL with actual location
+        document.getElementById('demoUrl').textContent = window.location.href;
+    </script>
+</body>
+</html>
